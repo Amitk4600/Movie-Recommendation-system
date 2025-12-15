@@ -46,18 +46,21 @@ def recommend(movie):
 
 @st.cache_resource
 def load_models():
+
     if not os.path.exists("movie_dict.pkl"):
         gdown.download(
-            "https://drive.google.com/uc?id=1_2ug_igwRb2iVUQW21TTodvf2EiXIaDN",
+            "https://drive.google.com/file/d/1_2ug_igwRb2iVUQW21TTodvf2EiXIaDN/view",
             "movie_dict.pkl",
             quiet=False,
+            fuzzy=True,
         )
 
     if not os.path.exists("similarity.pkl"):
         gdown.download(
-            "https://drive.google.com/uc?id=1oZKVX3bTAIeogeLrYlZKTEaVhvqNyZIy",
+            "https://drive.google.com/file/d/1oZKVX3bTAIeogeLrYlZKTEaVhvqNyZIy/view",
             "similarity.pkl",
             quiet=False,
+            fuzzy=True,
         )
 
 
