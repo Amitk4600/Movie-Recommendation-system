@@ -8,7 +8,7 @@ import gdown
 
 session = requests.Session()
 session.headers.update({"User_Agent": "Movie/1.0"})
-FOLDER_ID = "1XiuyMjclwaCy7bgMOiB9GZ0zix8XWG0D"
+
 
 def fetch_poster(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}"
@@ -46,11 +46,18 @@ def recommend(movie):
 
 @st.cache_resource
 def load_models():
-    if not os.path.exists("movie_dict.pkl") or not os.path.exists("similarity.pkl"):
-        gdown.download_folder(
-            f"https://drive.google.com/drive/folders/{FOLDER_ID}",
+    if not os.path.exists("movie_dict.pkl"):
+        gdown.download(
+            "https://drive.google.com/uc?id=1_2ug_igwRb2iVUQW21TTodvf2EiXIaDN",
+            "movie_dict.pkl",
             quiet=False,
-            use_cookies=False,
+        )
+
+    if not os.path.exists("similarity.pkl"):
+        gdown.download(
+            "https://drive.google.com/uc?id=1oZKVX3bTAIeogeLrYlZKTEaVhvqNyZIy",
+            "similarity.pkl",
+            quiet=False,
         )
 
 
