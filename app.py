@@ -3,10 +3,12 @@ import pandas as pd
 import pickle
 import requests
 import time
+import os
+import gdown
 
 session = requests.Session()
 session.headers.update({"User_Agent": "Movie/1.0"})
-
+FOLDER_ID = "1XiuyMjclwaCy7bgMOiB9GZ0zix8XWG0D"
 
 def fetch_poster(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}"
@@ -41,6 +43,18 @@ def recommend(movie):
         recommended_movies_posters.append(fetch_poster(movie_id))
     return recommended_movies, recommended_movies_posters
 
+
+@st.cache_resource
+def load_models():
+    if not os.path.exists("movie_dict.pkl") or not os.path.exists("similarity.pkl"):
+        gdown.download_folder(
+            f"https://drive.google.com/drive/folders/{FOLDER_ID}",
+            quiet=False,
+            use_cookies=False,
+        )
+
+
+load_models()
 
 movie_dict = pickle.load(open("movie_dict.pkl", "rb"))
 movies = pd.DataFrame(movie_dict)
