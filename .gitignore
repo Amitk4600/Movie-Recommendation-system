@@ -61,12 +61,6 @@ secrets.json
 *.log
 *.sqlite3
 
-# Assets and temporary media (optional; remove if you want to version screenshots)
-assets/screenshots/
-*.jpg
-*.jpeg
-*.png
-
 # Data / pickles (these can be large — remove if you intend to commit sample data)
 *.pkl
 movie_dict.pkl
